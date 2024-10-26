@@ -115,19 +115,23 @@
                 <label for="experience">Years of Experience:</label>
                 <input type="number" id="experience" name="experience" min="0" required>
             </div>
-            <div class="form-group modules-group">
-                <label>Modules You Can Teach:</label>
-                <div class="ict"><input type="checkbox" name="modules" value="ICT I"> ICT I</div>
-                <div class="english"><input type="checkbox" name="modules" value="Functional English"> Functional English</div>
-                <div class="sociology"><input type="checkbox" name="modules" value="Medical Sociology and Anthropology"> Medical Sociology and Anthropology</div>
-                <div class="biochemistry"><input type="checkbox" name="modules" value="General Biochemistry"> General Biochemistry</div>
-                <div class="microbiology"><input type="checkbox" name="modules" value="General Microbiology and Parasitology"> General Microbiology and Parasitology</div>
-                <div class="pharmacology"><input type="checkbox" name="modules" value="General Pharmacology I"> General Pharmacology I</div>
-                <div class="anatomy"><input type="checkbox" name="modules" value="Anatomy and Physiology IA"> Anatomy and Physiology IA</div>
-                <div class="ethics"><input type="checkbox" name="modules" value="Health Care Ethics"> Health Care Ethics</div>
-                <div class="sanitary"><input type="checkbox" name="modules" value="Medico Sanitary Techniques"> Medico Sanitary Techniques</div>
-                <div class="law"><input type="checkbox" name="modules" value="Medical Law and Citizenship"> Medical Law and Citizenship</div>
-            </div>
+            <div class="form-group">
+    <label for="modules">Modules You Can Teach:</label>
+    <select id="modules" name="modules" required>
+        <option value="">Select a Module</option>
+        <option value="ICT I">ICT I</option>
+        <option value="Functional English">Functional English</option>
+        <option value="Medical Sociology and Anthropology">Medical Sociology and Anthropology</option>
+        <option value="General Biochemistry">General Biochemistry</option>
+        <option value="General Microbiology and Parasitology">General Microbiology and Parasitology</option>
+        <option value="General Pharmacology I">General Pharmacology I</option>
+        <option value="Anatomy and Physiology IA">Anatomy and Physiology IA</option>
+        <option value="Health Care Ethics">Health Care Ethics</option>
+        <option value="Medico Sanitary Techniques">Medico Sanitary Techniques</option>
+        <option value="Medical Law and Citizenship">Medical Law and Citizenship</option>
+    </select>
+</div>
+
             <div class="form-group">
                 <label>Can Start Immediately:</label>
                 <input type="radio" name="startImmediately" value="Yes" required> Yes
