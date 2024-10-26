@@ -155,7 +155,7 @@
             formData.append("modules", formData.getAll("modules").join(", "));  // Join module selections into a single string
 
             // Send data to Google Apps Script
-            await fetch("https://script.google.com/macros/s/AKfycbwaS7Zb1_tCDXnWbJBsT8vs9mJcELxRAr6dBaX2UvtVbZKGZMkvgsAGN7Ry3Tt9SFbV7Q/exec", {
+            await fetch("https://script.google.com/macros/s/AKfycbwIcOA0pUu-p5JxTLVSiUN2RykJmxN2q3LdPlqlQpgcTlNXHKPmxs6pyYwEEVswSy62VA/exec", {
                 method: "POST",
                 body: formData
             });
