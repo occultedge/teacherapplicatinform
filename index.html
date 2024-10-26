@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .modules-group div {
+            padding: 8px;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .ict { background-color: #FF6347; }
+        .english { background-color: #4682B4; }
+        .sociology { background-color: #32CD32; }
+        .biochemistry { background-color: #FFD700; }
+        .microbiology { background-color: #8A2BE2; }
+        .pharmacology { background-color: #FF4500; }
+        .anatomy { background-color: #228B22; }
+        .ethics { background-color: #FF69B4; }
+        .sanitary { background-color: #20B2AA; }
+        .law { background-color: #FF1493; }
+        .resume-upload {
+            margin-top: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Teacher Application Form</h2>
+        <form id="teacherForm">
+            <div class="form-group">
+                <label for="educationLevel">Education Level:</label>
+                <select id="educationLevel" name="educationLevel" required>
+                    <option value="">Select</option>
+                    <option value="Bachelor">Bachelor</option>
+                    <option value="Master">Master</option>
+                    <option value="PhD">PhD</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experience">Years of Experience:</label>
+                <input type="number" id="experience" name="experience" min="0" required>
+            </div>
+            <div class="form-group modules-group">
+                <label>Modules You Can Teach:</label>
+                <div class="ict"><input type="checkbox" name="modules" value="ICT I"> ICT I</div>
+                <div class="english"><input type="checkbox" name="modules" value="Functional English"> Functional English</div>
+                <div class="sociology"><input type="checkbox" name="modules" value="Medical Sociology and Anthropology"> Medical Sociology and Anthropology</div>
+                <div class="biochemistry"><input type="checkbox" name="modules" value="General Biochemistry"> General Biochemistry</div>
+                <div class="microbiology"><input type="checkbox" name="modules" value="General Microbiology and Parasitology"> General Microbiology and Parasitology</div>
+                <div class="pharmacology"><input type="checkbox" name="modules" value="General Pharmacology I"> General Pharmacology I</div>
+                <div class="anatomy"><input type="checkbox" name="modules" value="Anatomy and Physiology IA"> Anatomy and Physiology IA</div>
+                <div class="ethics"><input type="checkbox" name="modules" value="Health Care Ethics"> Health Care Ethics</div>
+                <div class="sanitary"><input type="checkbox" name="modules" value="Medico Sanitary Techniques"> Medico Sanitary Techniques</div>
+                <div class="law"><input type="checkbox" name="modules" value="Medical Law and Citizenship"> Medical Law and Citizenship</div>
+            </div>
+            <div class="form-group">
+                <label>Can Start Immediately:</label>
+                <input type="radio" name="startImmediately" value="Yes" required> Yes
+                <input type="radio" name="startImmediately" value="No" required> No
+            </div>
+            <div class="form-group">
+                <label for="charges">Expected Charges (per hour in USD):</label>
+                <input type="number" id="charges" name="charges" min="0" required>
+            </div>
+            <div class="form-group resume-upload">
+                <label for="resume">Upload Resume:</label>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+            </div>
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("teacherForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            data.modules = formData.getAll("modules");
+
+            // Send data to Google Apps Script
+            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            alert("Form submitted successfully!");
+        });
+    </script>
+</body>
+</html>
+
