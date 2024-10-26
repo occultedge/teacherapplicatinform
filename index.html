@@ -83,7 +83,7 @@
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="whatsapp">WhatsApp Number with proper country code in the format +(country code)(Number):</label>
+                <label for="whatsapp">WhatsApp Number:</label>
                 <input type="tel" id="whatsapp" name="whatsapp" required>
             </div>
             <div class="form-group">
@@ -99,8 +99,6 @@
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="Australia">Australia</option>
                     <option value="Canada">Canada</option>
-                    <option value="a country in Africa">a country in Africa</option>
-                    
                     <!-- Add more countries as needed -->
                 </select>
             </div>
@@ -155,12 +153,12 @@
             formData.append("modules", formData.getAll("modules").join(", "));  // Join module selections into a single string
 
             // Send data to Google Apps Script
-            await fetch("https://script.google.com/macros/s/AKfycbwIcOA0pUu-p5JxTLVSiUN2RykJmxN2q3LdPlqlQpgcTlNXHKPmxs6pyYwEEVswSy62VA/exec", {
+            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
                 method: "POST",
                 body: formData
             });
 
-            alert("Form submitted successfully! We well get back to you shortly please inform us on whatsapp number +919953330039 that you have submitted the form ");
+            alert("Form submitted successfully!");
         });
     </script>
 </body>
