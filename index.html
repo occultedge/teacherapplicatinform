@@ -97,7 +97,7 @@
             formData.append("modules", formData.getAll("modules").join(", "));  // Join module selections into a single string
 
             try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbyxCKTItrg0Pwn_vzP59uKmvsMS2P3OxL2Egfl92QDjZUIf3l4-5tPAT6mc_eAvy878iw/exec", { // Replace with your Web App URL
+                const response = await fetch("https://script.google.com/macros/s/AKfycbzo_UiCP8daP9C7gwrTxdu7_sp5dLLKdaqg2KykbH1nj5sppAd27upudhWz1nc8ykzgXQ/exec", { // Replace with your Web App URL
                     method: "POST",
                     body: formData
                 });
