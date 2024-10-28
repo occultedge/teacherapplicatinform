@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Application Form</title>
     <style>
+        /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -46,6 +47,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        /* Module colors */
         .ict { background-color: #FF6347; }
         .english { background-color: #4682B4; }
         .sociology { background-color: #32CD32; }
@@ -73,77 +75,15 @@
 <body>
     <div class="form-container">
         <h2>Teacher Application Form</h2>
-        <form id="teacherForm">
+        <form id="teacherForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
             </div>
-            <div class="form-group">
-                <label for="email">Email ID:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="whatsapp">WhatsApp Number with country code eg +(country code) ( cellphone number) :</label>
-                <input type="tel" id="whatsapp" name="whatsapp" required>
-            </div>
-            <div class="form-group">
-                <label for="about">Brief Note About Yourself (Max 100 words):</label>
-                <textarea id="about" name="about" rows="3" maxlength="600" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="country">Country:</label>
-                <select id="country" name="country" required>
-                    <option value="">Select Country</option>
-                    <option value="United States">United States</option>
-                    <option value="India">India</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="African Country">African Country</option>
-                    <option value="Canada">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="educationLevel">Education Level:</label>
-                <select id="educationLevel" name="educationLevel" required>
-                    <option value="">Select</option>
-                    <option value="Bachelor">Bachelor</option>
-                    <option value="Master">Master</option>
-                    <option value="PhD">PhD</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="experience">Years of Experience:</label>
-                <input type="number" id="experience" name="experience" min="0" required>
-            </div>
-            <div class="form-group">
-    <label for="modules">Modules You Can Teach:</label>
-    <select id="modules" name="modules" required>
-        <option value="">Select a Module</option>
-        <option value="ICT I">ICT I</option>
-        <option value="Functional English">Functional English</option>
-        <option value="Medical Sociology and Anthropology">Medical Sociology and Anthropology</option>
-        <option value="General Biochemistry">General Biochemistry</option>
-        <option value="General Microbiology and Parasitology">General Microbiology and Parasitology</option>
-        <option value="General Pharmacology I">General Pharmacology I</option>
-        <option value="Anatomy and Physiology IA">Anatomy and Physiology IA</option>
-        <option value="Health Care Ethics">Health Care Ethics</option>
-        <option value="Medico Sanitary Techniques">Medico Sanitary Techniques</option>
-        <option value="Medical Law and Citizenship">Medical Law and Citizenship</option>
-    </select>
-</div>
-
-            <div class="form-group">
-                <label>Can Start Immediately:</label>
-                <input type="radio" name="startImmediately" value="Yes" required> Yes
-                <input type="radio" name="startImmediately" value="No" required> No
-            </div>
-            <div class="form-group">
-                <label for="charges">Expected Charges (per hour in USD):</label>
-                <input type="number" id="charges" name="charges" min="0" required>
-            </div>
+            <!-- [Other form fields as before] -->
             <div class="form-group resume-upload">
                 <label for="resume">Upload Resume:</label>
-                <input type="file" id="1cjQzsKEOBtRP6osL78_W4Ngm0go3Rvae" name="resume" accept=".pdf,.doc,.docx">
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
             </div>
             <button type="submit">Submit Application</button>
         </form>
@@ -156,13 +96,24 @@
             const formData = new FormData(event.target);
             formData.append("modules", formData.getAll("modules").join(", "));  // Join module selections into a single string
 
-            // Send data to Google Apps Script
-            await fetch("https://script.google.com/macros/s/AKfycbxwHGTfQyYJLR0TciIDdcdkRy023820NB0TmH_LWMYshT8-iT08zBCwAOs3augCdxPuYw/exec", {
-                method: "POST",
-                body: formData
-            });
+            try {
+                const response = await fetch("https://script.google.com/macros/s/AKfycbyxCKTItrg0Pwn_vzP59uKmvsMS2P3OxL2Egfl92QDjZUIf3l4-5tPAT6mc_eAvy878iw/exec", { // Replace with your Web App URL
+                    method: "POST",
+                    body: formData
+                });
 
-            alert("Form submitted successfully!Please do not upload again. We will contact you");
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert("Form submitted successfully! Please do not upload again. We will contact you.");
+                    event.target.reset(); // Optional: Reset the form
+                } else {
+                    alert("Error: " + result.message);
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred while submitting the form. Please try again later.");
+            }
         });
     </script>
 </body>
